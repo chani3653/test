@@ -13,12 +13,11 @@ function paintTodo(text)
     span.innerText = text;
     li.appendChild(delBtn);
     li.appendChild(span);
-    
     toDoList.appendChild(li);
 }
 
 function handleSubmit(event)
-{
+    {
     event.preventDefault();
     const currentValue = toDoInput.value;
     paintTodo(currentValue);
@@ -27,10 +26,10 @@ function handleSubmit(event)
 
 function loadToDos()
 {
-    const toDos = localStorage.getItem(TODOS_LS);
-    if (toDos !== null)
+    const loadedTodos = localStorage.getItem(TODOS_LS);
+    if (loadedTodos !== null)
     {
-
+        
     }
 }
 
