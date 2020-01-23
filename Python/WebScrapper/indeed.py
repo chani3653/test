@@ -1,5 +1,10 @@
 import requests
+import sys
+import io
+
 from bs4 import BeautifulSoup
+sys.stdout=io.TextIOWrapper(sys.stdout.detach(),encoding='utf-8')
+sys.stderr=io.TextIOWrapper(sys.stderr.detach(),encoding='utf-8')
 
 LIMIT = 50
 URL = f"https://www.indeed.com/jobs?q=python&limit={LIMIT}"
@@ -29,6 +34,7 @@ def extract_job(html):
     company = None
   location = html.find("div", {"class":"recJobLoc"})["data-rc-loc"]
   job_id = html["data-jk"]
+  #print(company, location, job_id)
   return {'title':title,'company':company,'location':location,"link":f"https://www.indeed.com/viewjob?jk={job_id}"}
 
 def extract_jobs(last_page):

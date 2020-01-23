@@ -1,5 +1,10 @@
 import requests
+import sys
+import io
+
 from bs4 import BeautifulSoup
+sys.stdout=io.TextIOWrapper(sys.stdout.detach(),encoding='utf-8')
+sys.stderr=io.TextIOWrapper(sys.stderr.detach(),encoding='utf-8')
 
 
 URL = f"https://stackoverflow.com/jobs?q=python&sort=i"
@@ -17,6 +22,7 @@ def extract_job(html):
   company = company.get_text(strip = True)
   location = location.get_text(strip = True)
   job_id = html['data-jobid']
+  #print(company, location, job_id)
   return {'title':title, 'company':company, 'location': location, "apply_link": f"https://stackoverflow.com/jobs/{job_id}"}
 
 def extract_jobs(last_page):
@@ -34,4 +40,4 @@ def extract_jobs(last_page):
 def get_jobs():
   last_page = get_last_page()
   jobs = extract_jobs(last_page)
-  return []
+  return jobs
