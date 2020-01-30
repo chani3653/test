@@ -28,7 +28,7 @@ function paintTodo(text) {
     delBtn.addEventListener("click", deleteToDo);
     const span = document.createElement("span");
     const newId = toDos.length + 1;
-    span.innerText = text + "   ";
+    span.innerText = `${text}\t`;
     li.appendChild(span);
     li.appendChild(delBtn);
     li.id = newId;
